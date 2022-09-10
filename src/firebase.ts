@@ -20,11 +20,15 @@ const firebaseConfig: FirebaseOptions = {
 
 const apps = getApps();
 
+const baseUrl = `${
+  process.env.VERCEL_ENV === 'development' ? 'http://' : 'https://'
+}${process.env.VERCEL_URL ?? 'localhost:3000'}`;
+
 // Initialize Firebase
 const app =
   apps.find(({ name }) => name === '[DEFAULT]') ??
   initializeApp(firebaseConfig);
-const functions = getFunctions(app, 'http://localhost:3000');
+const functions = getFunctions(app, baseUrl);
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);

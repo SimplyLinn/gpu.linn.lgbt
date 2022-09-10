@@ -7,6 +7,8 @@ const {
   FIREBASE_STORAGE_BUCKET,
   FIREBASE_MESSAGING_SENDER_ID,
   FIREBASE_APP_ID,
+  VERCEL_URL,
+  VERCEL_ENV,
 } = process.env;
 
 const nextConfig = {
@@ -18,6 +20,8 @@ const nextConfig = {
     FIREBASE_STORAGE_BUCKET,
     FIREBASE_MESSAGING_SENDER_ID,
     FIREBASE_APP_ID,
+    VERCEL_URL,
+    VERCEL_ENV,
   },
 };
 
