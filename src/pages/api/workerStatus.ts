@@ -47,11 +47,11 @@ interface CallableContext extends Omit<https.CallableContext, 'rawRequest'> {
 
 type HttpErrorWireFormat = ReturnType<https.HttpsError['toJSON']>;
 
-function firebaseFunction(
-  handler: (data: any, context: CallableContext) => Promise<unknown>,
+function firebaseFunction<Input, Output>(
+  handler: (data: Input, context: CallableContext) => Promise<Output>,
 ): (
   req: NextApiRequest,
-  res: NextApiResponse<{ data: unknown } | HttpErrorWireFormat>,
+  res: NextApiResponse<{ data: Output } | HttpErrorWireFormat>,
 ) => Promise<void> {
   return async (req, res) => {
     try {

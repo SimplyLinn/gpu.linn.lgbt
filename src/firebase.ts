@@ -18,9 +18,11 @@ const firebaseConfig: FirebaseOptions = {
   appId,
 };
 
+const apps = getApps();
+
 // Initialize Firebase
 const app =
-  getApps().find(({ name }) => name === '[DEFAULT]') ??
+  apps.find(({ name }) => name === '[DEFAULT]') ??
   initializeApp(firebaseConfig);
 const functions = getFunctions(app, 'http://localhost:3000');
 

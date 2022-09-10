@@ -6,11 +6,11 @@
     "dev:prod": "nodemon -x \"NODE_ENV=production next build && NODE_ENV=production next start\"",
     "build": "next build",
     "start": "next start",
-    "lint": "NODE_ENV=production run-p -cls --aggregate-output lint:*",
-    "lint:eslint-check": "NODE_ENV=production eslint-config-prettier 'src/**/*.js'",
-    "lint:prettier": "NODE_ENV=production prettier -c 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "lint:eslint": "NODE_ENV=production eslint src --report-unused-disable-directives --color",
-    "lint:tsc": "NODE_ENV=production tsc --noEmit --pretty"
+    "lint": "cross-env NODE_ENV=production run-p -cls --aggregate-output lint:*",
+    "lint:eslint-check": "cross-env NODE_ENV=production eslint-config-prettier 'src/**/*.js'",
+    "lint:prettier": "cross-env NODE_ENV=production prettier -c 'src/**/*.{js,jsx,ts,tsx,json}'",
+    "lint:eslint": "cross-env NODE_ENV=production eslint src --report-unused-disable-directives --color",
+    "lint:tsc": "cross-env NODE_ENV=production tsc --noEmit --pretty"
   },
   "nodemonConfig": {
     "ext": "js,jsx,ts,tsx,json,css,scss,svg",
@@ -44,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.2",
     "@typescript-eslint/parser": "^5.36.2",
     "autoprefixer": "^10.4.8",
+    "cross-env": "^7.0.3",
     "eslint": "^8.23.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
