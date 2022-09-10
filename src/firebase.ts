@@ -22,7 +22,11 @@ const apps = getApps();
 
 const baseUrl = `${
   process.env.VERCEL_ENV === 'development' ? 'http://' : 'https://'
-}${process.env.VERCEL_URL ?? 'localhost:3000'}`;
+}${
+  process.env.VERCEL_ENV === 'production'
+    ? 'gpu.linn.lgbt'
+    : process.env.VERCEL_URL ?? 'localhost:3000'
+}`;
 
 // Initialize Firebase
 const app =
