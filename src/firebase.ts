@@ -1,4 +1,4 @@
-import { initializeApp, FirebaseOptions, getApp } from 'firebase/app';
+import { initializeApp, FirebaseOptions, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFunctions } from 'firebase/functions';
 
@@ -19,7 +19,9 @@ const firebaseConfig: FirebaseOptions = {
 };
 
 // Initialize Firebase
-const app = getApp('[DEFAULT]') ?? initializeApp(firebaseConfig);
+const app =
+  getApps().find(({ name }) => name === '[DEFAULT]') ??
+  initializeApp(firebaseConfig);
 const functions = getFunctions(app, 'http://localhost:3000');
 
 // Initialize Firebase Authentication and get a reference to the service
