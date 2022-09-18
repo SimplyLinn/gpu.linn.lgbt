@@ -5,6 +5,15 @@ import { onIdTokenChanged } from 'firebase/auth';
 
 const Context = React.createContext<Socket | null>(null);
 
+const { WORKER_SERVER } = (() => {
+  if (process.env.WORKER_SERVER == null) {
+    throw new Error('WORKER_SERVER is not defined');
+  }
+  return {
+    WORKER_SERVER: process.env.WORKER_SERVER,
+  };
+})();
+
 export function SocketProvider({ children }: { children: React.ReactNode }) {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [idToken, setIdToken] = useState<string>();
@@ -33,7 +42,7 @@ export function SocketProvider({ children }: { children: React.ReactNode }) {
     if (idToken != null) {
       if (!socketRef.current) {
         console.log('connecting');
-        socketRef.current = SocketIO('http://localhost:5000/', {
+        socketRef.current = SocketIO(WORKER_SERVER, {
           auth: { jwtToken: idToken },
         });
         socketRef.current.connect();

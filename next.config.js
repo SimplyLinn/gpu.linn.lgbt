@@ -9,6 +9,7 @@ const {
   FIREBASE_APP_ID,
   VERCEL_URL,
   VERCEL_ENV,
+  WORKER_SERVER,
 } = process.env;
 
 const nextConfig = {
@@ -22,6 +23,7 @@ const nextConfig = {
     FIREBASE_APP_ID,
     VERCEL_URL,
     VERCEL_ENV,
+    WORKER_SERVER,
   },
 };
 
