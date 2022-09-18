@@ -21,7 +21,10 @@ const firebaseConfig: FirebaseOptions = {
 const apps = getApps();
 
 const baseUrl = `${
-  process.env.VERCEL_ENV === 'development' ? 'http://' : 'https://'
+  process.env.VERCEL_ENV === 'development' ||
+  process.env.VERCEL_ENV === undefined
+    ? 'http://'
+    : 'https://'
 }${
   process.env.VERCEL_ENV === 'production'
     ? 'gpu.linn.lgbt'
@@ -32,9 +35,9 @@ const baseUrl = `${
 const app =
   apps.find(({ name }) => name === '[DEFAULT]') ??
   initializeApp(firebaseConfig);
+
 const functions = getFunctions(app, baseUrl);
 
-// Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
 
 export { auth, functions };

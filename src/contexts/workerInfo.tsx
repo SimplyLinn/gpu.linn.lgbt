@@ -1,4 +1,4 @@
-import React, { useEffect, createContext, useContext } from 'react';
+import React, { useEffect, createContext, useContext, ReactNode } from 'react';
 import { Data as WorkerData } from 'src/pages/api/workerStatus';
 import { httpsCallable } from 'firebase/functions';
 import { functions } from 'src/firebase';
@@ -30,7 +30,7 @@ export function WorkerInfoProvider({
   children,
   updateInterval = 5000,
 }: {
-  children: (isLoggedIn: boolean) => React.ReactNode;
+  children: ReactNode;
   updateInterval?: number;
 }) {
   const { user } = useAuth();
@@ -80,9 +80,7 @@ export function WorkerInfoProvider({
     };
   }, [updateInterval, isLoggedIn]);
 
-  return (
-    <Context.Provider value={value}>{children(isLoggedIn)}</Context.Provider>
-  );
+  return <Context.Provider value={value}>{children}</Context.Provider>;
 }
 
 export default function useWorkerInfo() {

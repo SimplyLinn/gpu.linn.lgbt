@@ -50,7 +50,7 @@ export function AuthProvider({
           ? router.query.redirect
           : undefined;
       if (!redirect?.startsWith('/') || redirect === '/') {
-        void router.replace('/app');
+        void router.replace('/main');
       } else {
         void router.replace(redirect);
       }

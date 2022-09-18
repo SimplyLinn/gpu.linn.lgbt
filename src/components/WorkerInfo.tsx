@@ -33,7 +33,7 @@ function Table({
   lastUpdatedString: string;
 }) {
   return (
-    <table className="text-xs w-64 h-36 table-fixed">
+    <table className="text-xs w-full h-full table-fixed">
       <thead>
         <tr>
           <th colSpan={2}>
@@ -151,14 +151,18 @@ export default function WorkerInfo() {
     return seconds === 0 ? 'just now' : `${seconds} seconds ago`;
   }, [now, lastFetched]);
 
-  if (!isRefreshing && !worker) return null;
+  const show = Boolean(worker) || (!isError && isRefreshing);
 
   return (
-    <Table
-      worker={worker}
-      lastUpdatedString={lastUpdatedString}
-      isError={isError}
-      isRefreshing={isRefreshing}
-    />
+    <div className="w-64 h-36">
+      {show && (
+        <Table
+          worker={worker}
+          lastUpdatedString={lastUpdatedString}
+          isError={isError}
+          isRefreshing={isRefreshing}
+        />
+      )}
+    </div>
   );
 }
